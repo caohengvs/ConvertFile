@@ -1,14 +1,15 @@
 #include "CConvertFile.h"
 
-void CConvertFile::FindAllFile(const filesystem::directory_entry& itEntry, vector<string>& arrFile)
+void CConvertFile::FindAllFile(const std::string& strSrc, vector<string>& arrFile)
 {
+	auto itEntry = filesystem::directory_entry(strSrc);
 	if (itEntry.is_directory())
 	{
 		for (const auto& itSub : filesystem::directory_iterator(itEntry.path().string()))
 		{
 			if (itSub.is_directory())
 			{
-				FindAllFile(itSub, arrFile);
+				FindAllFile(itSub.path().string(), arrFile);
 			}
 			else
 			{
@@ -19,7 +20,7 @@ void CConvertFile::FindAllFile(const filesystem::directory_entry& itEntry, vecto
 	arrFile.push_back(itEntry.path().string());
 }
 
-void CConvertFile::ConvertFile(vector<string>& arrFile)
+void CConvertFile::ConvertFile(const vector<string>& arrFile)
 {
 	size_t nFindIndex = -1, nLen = 0;
 	string strTarget, strDir, strReplace;
@@ -58,7 +59,7 @@ void CConvertFile::ConvertFile(vector<string>& arrFile)
 	cout << endl << "转换完成" << endl;
 }
 
-void CConvertFile::ConvertFile(vector<string>& arrFile, const string& strConvertPath)
+void  CConvertFile::ConvertFile(const vector<string>& arrFile, const string& strConvertPath)
 {
 	size_t nFindIndex = -1, nLen = 0;
 	string strTarget, strDir, strReplace;
@@ -98,7 +99,7 @@ void CConvertFile::ConvertFile(vector<string>& arrFile, const string& strConvert
 	cout << endl << "转换完成" << endl;
 }
 
-void CConvertFile::RConvertFile(vector<string>& arrFile)
+void CConvertFile::RConvertFile(const vector<string>& arrFile)
 {
 	size_t nFindIndex = -1, nLen = 0;
 	string strTarget, strDir, strReplace;
@@ -116,5 +117,6 @@ void CConvertFile::RConvertFile(vector<string>& arrFile)
 		cout << "-";
 	}
 
-	cout << endl << "转换完成" << endl;
+	cout << endl << "逆转换完成" << endl;
 }
+

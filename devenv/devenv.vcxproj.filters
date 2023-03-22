@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="devenvconsole.cpp">
+    <ClCompile Include="ChTestModel.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CConvertFile.cpp">
