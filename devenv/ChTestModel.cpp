@@ -11,7 +11,7 @@ char** pArgvBuffer = nullptr;
 
 int main(int argc, char** argv)
 {
-	if (argc < 5)
+	if (argc < 2)
 	{
 		cout << "请输入: devenv.exe -n[转换] -s 源路径 -t 目标路径";
 		cout << "请输入: devenv.exe -r[逆转换] -s 源路径";
